@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+/**
+ *  Ademco RESTful interface for use with corresponding SmartThings app
+ *  Requires AD2USB module for interface to ademco system
+ *  Tested with Ademco Safewatch 3000 pro 
+ *
+ *  Author: Joel Tamkin
+ *  Date: 2014-04-16
+ */
+ 
 import time
 from alarmdecoder import AlarmDecoder
 from alarmdecoder.messages import Message
@@ -5,23 +15,14 @@ from alarmdecoder.devices import USBDevice
 import urllib2
 
 import logging
-# create logger
 lgr = logging.getLogger('ademco')
 lgr.setLevel(logging.DEBUG)
-# add a file handler
 fh = logging.FileHandler('ademco.log')
 fh.setLevel(logging.WARNING)
-# create a formatter and set the formatter for the handler.
 frmt = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fh.setFormatter(frmt)
-# add the Handler to the logger
 lgr.addHandler(fh)
-# You can now start issuing logging statements in your code
-#lgr.debug('debug message') # This won't print to myapp.log
-#lgr.info('info message') # Neither will this.
-#lgr.warn('Checkout this warning.') # This will show up in the log file.
-#lgr.error('An error goes here.') # and so will this.
-#lgr.critical('Something critical happened.') # and this one too.
+
 
 
 myDevices = {'0232638' : "Back Door",
@@ -32,8 +33,8 @@ myDevices = {'0232638' : "Back Door",
         '0117882' : "Loft Smoke"}
 
 STBASEURL = 'https://graph.api.smartthings.com/api/smartapps/installations/'
-STAPPGUID = 'f9b51dfa-e737-4d48-b01c-0240916ca8b6'
-STAPPTOKEN = '?access_token=5de5c53b-4cd8-4aee-a2ec-3a7b885b9179'
+STAPPGUID = 'insert-your-guid-here'
+STAPPTOKEN = '?access_token=insert-your-access-token-here'
 APIBASEURL = STBASEURL + STAPPGUID
 
 lastmessage = Message()
